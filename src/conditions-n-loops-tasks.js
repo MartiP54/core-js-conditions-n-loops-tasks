@@ -301,8 +301,25 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  let left;
+  let right;
+  let rez = -1;
+  for (let num = 0; num < arr.length; num += 1) {
+    left = 0;
+    right = 0;
+    for (let i = 0; i < num; i += 1) {
+      left += arr[i];
+    }
+    for (let i = arr.length - 1; i > num; i -= 1) {
+      right += arr[i];
+    }
+    if (left === right) {
+      rez = num;
+      num = arr.length;
+    }
+  }
+  return rez;
 }
 
 /**
