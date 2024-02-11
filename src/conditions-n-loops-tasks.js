@@ -438,17 +438,22 @@ function sortByAsc(arr) {
   if (arr.length < 2) {
     return arr;
   }
+  const resultArr = arr;
   const opor = arr[0];
   const greaterArr = [];
   const smallerArr = [];
   for (let i = 1; i < arr.length; i += 1) {
     if (arr[i] >= opor) {
-      greaterArr.push(arr[i]);
+      greaterArr[greaterArr.length] = arr[i];
     } else {
-      smallerArr.push(arr[i]);
+      smallerArr[smallerArr.length] = arr[i];
     }
   }
-  return sortByAsc(smallerArr).concat(opor, sortByAsc(greaterArr));
+  const tempArr = [...sortByAsc(smallerArr), opor, ...sortByAsc(greaterArr)];
+  for (let i = 0; i < tempArr.length; i += 1) {
+    resultArr[i] = tempArr[i];
+  }
+  return resultArr;
 }
 
 /**
