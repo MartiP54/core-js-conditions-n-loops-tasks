@@ -476,6 +476,8 @@ function sortByAsc(arr) {
 
 function shuffleChar(str, iterations) {
   let rezult = str;
+  let factor = 0;
+  const shank = [];
   function shuffle(str1) {
     let tempEven = '';
     let tempOdd = '';
@@ -490,8 +492,13 @@ function shuffleChar(str, iterations) {
   }
   for (let n = 0; n < iterations; n += 1) {
     shuffle(rezult);
+    shank[n] = rezult;
+    if (rezult === str) {
+      factor = n + 1;
+      n = iterations;
+    }
   }
-  return rezult;
+  return factor ? shank[(iterations % factor) - 1] : rezult;
 }
 
 /**
